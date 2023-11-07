@@ -1,0 +1,62 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2012                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+application     pimpleFoam;//tbnnPimpleFoam;//pimpleFoam;
+
+startFrom       latestTime;
+
+//startTime       125;
+
+stopAt          endTime;
+
+//endTime         160;
+endTime         180;
+
+deltaT          0.005;
+
+//writeControl    adjustable;
+writeControl    timeStep;
+
+//writeInterval   200;
+writeInterval   20;
+
+writeFormat     ascii;
+
+writePrecision  8;
+
+writeCompression off;
+
+timeFormat      general;
+
+timePrecision   6;
+
+runTimeModifiable true;
+
+
+functions
+{
+    #include "forces"
+    #include "forceCoeffs"
+    #include "pressureTotal"
+    #include "pressureTotalCoeff"
+    #include "pressureStatic"
+    #include "pressureStaticCoeff"
+    #include "yPlus"
+}
+
+
+// ************************************************************************* //

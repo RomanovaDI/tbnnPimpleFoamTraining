@@ -1,0 +1,19 @@
+#!/bin/sh
+#cd "${0%/*}" || exit                                # Run from this directory
+. ${WM_PROJECT_DIR:?}/bin/tools/RunFunctions        # Tutorial run functions
+#------------------------------------------------------------------------------
+
+touch preciseCalculationLES.foam
+runApplication blockMesh
+runApplication mirrorMesh
+rm -rf constant/polyMesh
+mv 0.005/polyMesh constant/
+rm -rf 0.005
+runApplication checkMesh
+cp -r 0.orig 0
+runApplication decomposePar
+runParallel $(getApplication)
+python3 CdCl.py
+#runApplication reconstructPar
+
+#------------------------------------------------------------------------------

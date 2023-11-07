@@ -1,0 +1,45 @@
+!/bin/sh
+#cd "${0%/*}" || exit                                # Run from this directory
+. ${WM_PROJECT_DIR:?}/bin/tools/RunFunctions        # Tutorial run functions
+#------------------------------------------------------------------------------
+
+#touch Re10000_nz10_nRadial25_m49800_Cd.._Clp.._yPlus10.foam
+#runApplication blockMesh
+#runApplication mirrorMesh
+#rm -rf constant/polyMesh
+#mv 0.005/polyMesh constant/
+#rm -rf 0.005
+#runApplication checkMesh
+#cp -r 0.orig 0
+#mv log.pimpleFoam log.pimpleFoam0
+./clean
+mkdir cfd
+touch cfd/cfd.foam
+cp -r constant cfd/
+mkdir tbnn
+touch tbnn/tbnn.foam
+cp -r constant tbnn/
+mkdir target
+touch target/target.foam
+cp -r constant target/
+mkdir pred
+touch pred/pred.foam
+cp -r constant pred/
+mkdir predT
+touch predT/predT.foam
+cp -r constant predT/
+for TIME in timesPatterns
+do
+	cp -r $TIME cfd/
+	rm -rf $TIME/*
+	mapFields -consistent -sourceTime $TIME ../preciseCalculationLES/
+	mv 0 $TIME
+#	runApplication decomposePar
+#	runParallel $(getApplication)
+	rm log.*
+	runApplication $(getApplication)
+done
+#python3 CdCl.py
+#runApplication reconstructPar
+
+#------------------------------------------------------------------------------

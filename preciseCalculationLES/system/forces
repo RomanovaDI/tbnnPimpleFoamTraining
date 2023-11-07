@@ -1,0 +1,16 @@
+forces
+{
+    type            forces;
+    libs            (forces);
+    //writeControl    timeStep;
+    //timeInterval    20;
+    writeControl    writeTime;
+    timeStart       1;
+
+    patches         (hole);
+    CofR            (0.20 0.15 -0.01);
+    writeFields     yes;
+
+    rho             rhoInf;
+    rhoInf          1.2;
+}

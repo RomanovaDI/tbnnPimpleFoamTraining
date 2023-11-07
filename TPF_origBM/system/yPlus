@@ -1,0 +1,8 @@
+yPlus1
+{
+    type            yPlus;
+    libs            ("fieldFunctionObjects.so");
+    writeControl    writeTime;
+    //writeControl    timeStep;
+    //timeInterval    20;
+}

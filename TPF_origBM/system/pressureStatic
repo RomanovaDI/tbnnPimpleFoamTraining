@@ -1,0 +1,24 @@
+pressureStatic
+{
+    // Mandatory entries (unmodifiable)
+    type            pressure;
+    libs            (fieldFunctionObjects);
+    writeControl    writeTime;
+    //writeControl    timeStep;
+    //timeInterval    20;
+
+    // Mandatory entries (runtime modifiable)
+    mode            static;
+
+    // Optional entries (runtime modifiable)
+    p               p;
+    U               U;
+    rho             rhoInf;
+    rhoInf          1.0; // enabled if rho=rhoInf
+    pRef            0.0;
+    hydroStaticMode none;
+    g               (0 -9.81 0); // enabled if hydroStaticMode != none
+    hRef            0.0;         // enabled if hydroStaticMode != none
+    pInf            0.0;
+    UInf            (1 0 0);
+}

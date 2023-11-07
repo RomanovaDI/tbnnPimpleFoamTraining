@@ -1,0 +1,22 @@
+#!/bin/sh
+cd "${0%/*}" || exit                                # Run from this directory
+. ${WM_PROJECT_DIR:?}/bin/tools/CleanFunctions      # Tutorial clean functions
+#------------------------------------------------------------------------------
+
+#cleanCase0
+#rm err
+#rm CdCl.log
+#rm pics/*.png
+rm -rf processor*
+rm log.*
+rm [0-9]*
+rm -rf cfd tbnn target pred predT
+#rm -rf 160
+#rm -rf postProcessing
+#rm *.foam
+
+#rm -rf dynamicCode
+#rm -rf constant/coarseMesh
+#rm -f system/coarseMesh/decomposeParDict
+
+#------------------------------------------------------------------------------
